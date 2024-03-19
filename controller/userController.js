@@ -47,6 +47,8 @@ module.exports = {
       res.redirect("/userList");
     } catch (error) {
       console.log("Error in unblocking user:", error);
+
+      
     }
   },
 
