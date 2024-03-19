@@ -1,0 +1,262 @@
+<%-include("../includes/user/homehead") %>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      
+.product-card {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 400px; 
+            object-fit: cover;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .product-card-body {
+            padding: 15px;
+        }
+
+        .product-card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-card-price {
+            font-size: 14px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .product-card-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-card-buttons a {
+            padding: 8px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add-to-cart {
+            background-color: #ae1313;
+        }
+
+        .btn-buy-now {
+            background-color: #ae1313;
+        }
+
+        .btn-add-to-cart:hover,
+        .btn-buy-now:hover {
+            background-color:#ae1313;
+        }
+
+
+/* Product Cards */
+.block2 {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    
+    padding: 1px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.block2:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.block2-pic {
+    position: relative;
+    overflow: hidden;
+}
+
+.block2-pic img {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+.block2:hover .block2-pic img {
+    transform: scale(1.05);
+}
+
+.block2-txt-child2 {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.block2-txt-child2 a {
+    margin-left: 10px;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.block2-txt-child2 a:hover {
+    color: #333;
+}
+
+.stext-106 {
+    font-size: 16px;
+    color: #333;
+}
+
+.size-104 {
+    font-size: 14px;
+    color: #666;
+}
+
+.bor4 {
+    border-radius: 4px;
+}
+
+.bor3 {
+    border-radius: 3px;
+}
+
+.trans-04 {
+    transition: all 0.4s ease;
+}
+
+.flex-r {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.p-t-3 {
+    padding-top: 5px;
+}
+.ltext-103 {
+    margin-left: 40px;
+    margin-top: 40px;
+}
+section {
+    margin-top: 100px; 
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .block2 {
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .block2 {
+        padding: 8px;
+    }
+}
+
+
+.panel-search {
+        margin-bottom: 20px;
+    }
+
+    .panel-filter {
+        margin-bottom: 20px;
+    }
+
+    .search-filter-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; 
+    }
+
+    .search-filter-container .panel-search,
+    .search-filter-container .panel-filter {
+        margin-left: 20px; 
+    }
+
+    .p-b-10 {
+        margin-bottom: 20px; 
+    }
+</style>
+
+<div class="p-b-10">
+    
+    <div class="search-filter-container">
+        
+        <div class="p-b-10">
+           
+        </div>
+        <div class="panel-search">
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <button onclick="searchProducts()" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="panel-filter">
+            <label for="sortBy">Sort By:</label>
+            <select id="sortBy">
+                <option value="priceLowToHigh">Price: Low to High</option>
+                <option value="priceHighToLow">Price: High to Low</option>
+                <option value="priceHighToLow">New Arrivals</option>
+                
+            </select>
+            <button onclick="filterProducts()" class="btn btn-primary">
+                <i class="fas fa-filter"></i> 
+                Apply
+            </button>
+        </div>
+    </div>
+</div>
+
+<section>
+    
+
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                
+                <li class="breadcrumb-item active" aria-current="page">shop</li>
+            </ol>
+        </nav>
+        
+        <div class="row isotope-grid">
+            
+          
+            <% products.forEach(product => { %>
+                <% if (!product.isDeleted) { %>
+                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                       
+                        <div class="product-card">
+                            <img src="/uploads/<%= product.images[0] %>" alt="Product Image">
+                            <div class="product-card-body">
+                                <h5 class="product-card-title"><%= product.productName %></h5>
+                                <p class="product-card-price">₹ <%= product.price %></p>
+                                <div class="product-card-buttons">
+                                    <a href="/singleproduct/<%= product._id %>" class="btn btn-buy-now">View</a>
+                                    <a href="/addtowishlist" class="btn btn-add-to-cart">Add to Wishlist</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<%-include("../includes/user/homefooter") %>
+

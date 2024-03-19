@@ -1,0 +1,185 @@
+<%-include("../includes/user/homehead") %>
+<style>
+    .btn, a.btn {
+        background-color: #ae1313 !important; 
+        color: #fff !important; 
+        border: none !important; 
+        border-radius: 5px !important; 
+        padding: 5px 10px !important;
+        font-size: 14px !important;
+    }
+    
+  
+    .updateCartButton {
+        background-color: transparent !important; 
+        color: #ae1313 !important;
+        border: 1px solid #ae1313 !important; 
+        border-radius: 5px !important;
+        padding: 5px 10px !important; 
+        font-size: 14px !important; 
+    }
+
+   
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        background-color: #f9f9f9;
+    }
+    .card-item {
+        margin-bottom: 10px;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 5px; 
+    }
+    .card-item img {
+        max-width: 80px; 
+        height: auto;
+        border-radius: 5px;
+    }
+    .btn-delete, .btn-add-to-wishlist {
+        margin-top: 10px;
+        font-size: 12px; 
+        padding: 5px 10px;
+        border-radius: 5px; 
+        background-color: #ae1313; 
+        color: #fff;
+        border: none;
+    }
+    
+    .billing-details {
+        background-color: #f8f9fa;
+        border: 1px solid #dfe2e6;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .billing-item {
+        margin-bottom: 10px;
+    }
+    .summary {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+   
+   
+</style>
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Shopping Cart</h4>
+                    <div class="col align-self-center text-right text-muted"> Items <%= item %></div>
+                    <div class="card-text">
+                       
+                        <% products.forEach(product =>{ %>
+                        <div class="card-item border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <img src="/uploads/<%=product.Product.images[0] %>" class="img-fluid" alt="Product Image">
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><%=product.Product.productName %></h6>
+                                    <p><%=product.size %></p>
+                                    <p>₹ <%=product.Product.price %></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <button class="btn btn-outline-secondary updateCartButton" data-cartitem-id="<%=product._id %>" data-cart-quantity="-1">-</button>
+                                        <div class="form-control text-center quantity-display"><%= product.quantity  %></div>
+                                        <button class="btn btn-outline-secondary updateCartButton" data-cartitem-id="<%=product._id %>" data-cart-quantity="1">+</button>
+                                        <form action="/deletecartitem/<%= product._id %>?_method=DELETE" method="POST">
+                                           
+                                            <button type="submit" class="btn btn-danger mt-4">Delete</button>
+                                        </form>
+                                        <div class="mt-3">
+                                            <a href="#" class="btn btn-success btn-checkout">Add to wishlist</a>
+
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        <% }) %>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="col-md-4">
+            <div class="billing-details">
+                <h4 class="card-title">Billing Details</h4>
+                <div class="card-text">
+                    <% products.forEach(product =>{ %>
+                    <div class="billing-item border-bottom">
+                        <p>  <strong>Productname:</strong>  <%= product.Product.productName %> </p>
+                        <p><strong>Price:</strong>₹ <%= product.Product.price %> </p>
+                        <p><strong>Quantity</strong> <%= product.quantity %> </p>
+                    </div>
+                    <% }) %>
+                  
+                    <p>Total: <strong><%= total %></strong></p>
+                    <a href="/shop" class="btn btn-primary">Continue Shopping</a>
+                    <a href="/checkout" class="btn btn-success btn-checkout">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const quantityChange = document.querySelectorAll(".updateCartButton");
+quantityChange.forEach(button => {
+    button.addEventListener("click", () => {
+       
+        const qty = button.getAttribute("data-cart-quantity");
+        const id = button.getAttribute("data-cartitem-id");
+        const quantityDisplay = button.parentElement.querySelector(".quantity-display");
+            
+            if (qty === "-1" && parseInt(quantityDisplay.textContent) === 1) {
+                
+                return;
+            }
+
+        fetch(`/cart/changequantity/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                quantity: qty
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        })
+        .catch(error => {
+            console.error("There was a problem with the fetch:", error);
+        });
+    });
+});
+
+    
+</script>
+
+<%-include("../includes/user/homefooter") %>
+

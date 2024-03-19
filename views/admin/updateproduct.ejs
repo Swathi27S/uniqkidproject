@@ -1,0 +1,135 @@
+<%- include('../includes/admin/adminHead')%>
+<div id="main-wrapper">
+    <%- include('../includes/admin/adminNav')%>
+    <%- include('../includes/admin/adminSidebar')%>
+     <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <form class="form-horizontal" action="/updateproduct/<%= product._id %>?_method=PATCH" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <h2>Edit Product</h2>
+                      <label class="control-label col-sm-2" for="product ">Product Name:</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="productname" name="productName"  value="<%= product.productName%>" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="category">Category Name:</label>
+                        <div class="col-sm-10"> 
+                          <select class="form-control" id="categoryName" name="categoryName" required>
+                              <option value=" "disabled selected>select category</option>
+                              <% category.forEach(category =>{ %>
+                                <option value="<%= category._id %>" <%= category.category === product.categoryinfo.category ? 'selected' : '' %>>
+                                  <%= category.category %>
+                              </option>
+  
+                              <%});%>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="size">Size:</label>
+                      <div class="col-sm-10">
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" name="size" value="10moths" <% if (product.size.includes('10months')) { %> checked <% } %>>
+                                  10months
+                              </label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" name="size" value="1-3yrs" <% if (product.size.includes('1-3yrs')) { %> checked <% } %>>
+                                  1-3yrs
+                              </label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" name="size" value="4-6yrs" <% if (product.size.includes('4-6yrs')) { %> checked <% } %>>
+                                  4-6yrs
+                              </label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" name="size" value="7-9yrs" <% if (product.size.includes('7-9yrs')) { %> checked <% } %>>
+                                  7-9yrs
+                              </label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" name="size" value="10-12yrs" <% if (product.size.includes('10-12yrs')) { %> checked <% } %>>
+                                  10-12yrs
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="stock">Stock:</label>
+                        <div class="col-sm-10"> 
+                          <input type="text" class="form-control" id="stock" name="stock" value="<%= product.stock %>" required>
+                        </div>
+                    </div>
+                    <% if (stockError || priceError) { %>
+                      <div class="text-danger">
+                          <% if (stockError && priceError) { %>
+                              <%= stockError %>
+                              <%= priceError %>
+                          <% } else if (stockError) { %>
+                              <%= stockError %>
+                          <% } else { %>
+                              <%= priceError %>
+                          <% } %>
+                      </div>
+                  <% } %>
+                  
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="price">Price:</label>
+                        <div class="col-sm-10"> 
+                          <input type="text" class="form-control" id="price" name="price" value="<%= product.price %>" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="image">Image:</label>
+                      <div class="col-sm-10">
+                          <% product.images.forEach(item => { %>
+                              <img style="width:100px;height:100px;" src="/uploads/<%=item %>">
+                              
+                              <input type="file" class="form-control" id="images" name="images" > 
+                          <% }) %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="description">user type</label>
+                      <div class="col-sm-10"> 
+                        <input type="text" class="form-control" id="usertype" name="usertype" value="<%= product.usertype %>" required>
+                      </div>
+                    </div>
+                  
+                    
+                    
+                    
+                    
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="description">Description:</label>
+                      <div class="col-sm-10"> 
+                        <input type="text" class="form-control" id="description" name="description" value="<%= product.description %>" required>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group"> 
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Update</button>
+                      </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+</div>
+<%-include('../includes/admin/adminEnd')%>

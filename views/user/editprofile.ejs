@@ -1,0 +1,72 @@
+<%-include("../includes/user/homehead") %>
+
+<style>
+  
+#personalInfoForm {
+   margin: auto;
+    width: 80%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+
+.personalinfo h4 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+.personalinfo input[type="text"],
+.personalinfo input[type="email"] {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.personalinfo button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ae1313;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.personalinfo button[type="submit"]:hover {
+    background-color: #d63131;
+}
+
+    
+</style>
+
+<div class="container">
+    <section class="section-container">
+        <form id="personalInfoForm" action="/editprofile/<%=userData._id %>?_method=PATCH" method="POST" style="width: 50%; height: 90%;">
+            <div class="personalinfo">
+                <i class="fa fa-user profile-icon"></i>
+                <h4>Edit Personal Information</h4>
+                <div class="personalinfo-details">
+                    <% if(userData) { %>
+                        <p>First Name: <input type="text" name="firstName" value="<%= userData.firstName %>" style="border-radius: 3px;"></p>
+                        <p>Last Name: <input type="text" name="lastName" value="<%= userData.lastName %>" style="border-radius: 3px;"></p>
+                        <p>Email: <input type="email" name="email" value="<%= userData.email %>" style="border-radius: 3px;"></p>
+                    <% } else { %>
+                        <p>No user data available</p>
+                    <% } %>
+                </div>
+                <button type="submit" style="color: #e9ecf3; background-color: #ae1313;">Update</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+
+<%-include("../includes/user/homefooter") %>

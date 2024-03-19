@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UniqKid</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+   
+
+    <style>
+        .main-navbar{
+    border-bottom: 1px solid #ccc;
+}
+.main-navbar .top-navbar{
+    background-color: #000307;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.main-navbar .top-navbar .brand-name{
+    color: #fff;
+}
+.main-navbar .top-navbar .nav-link{
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+.main-navbar .top-navbar .dropdown-menu{
+    padding: 0px 0px;
+    border-radius: 0px;
+}
+.main-navbar .top-navbar .dropdown-menu .dropdown-item{
+    padding: 8px 16px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+.main-navbar .top-navbar .dropdown-menu .dropdown-item i{
+    width: 20px;
+    text-align: center;
+    color: #2874f0;
+    font-size: 14px;
+}
+.main-navbar .navbar{
+    padding: 0px;
+    background-color: #ddd;
+}
+.main-navbar .navbar .nav-item .nav-link{
+    padding: 8px 20px;
+    color: #000;
+    font-size: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+    .main-navbar .top-navbar .nav-link{
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+.product-card {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 400px; /* Adjust height as needed */
+            object-fit: cover;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .product-card-body {
+            padding: 15px;
+        }
+
+        .product-card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-card-price {
+            font-size: 14px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .product-card-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-card-buttons a {
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add-to-cart {
+            background-color: #28a745;
+        }
+
+        .btn-buy-now {
+            background-color: #007bff;
+        }
+
+        .btn-add-to-cart:hover,
+        .btn-buy-now:hover {
+            background-color: #218838;
+        }
+
+/* Filter and Search Options */
+.filter-tope-group {
+    margin-bottom: 20px;
+}
+
+.panel-search {
+    margin-bottom: 20px;
+}
+
+.panel-filter {
+    margin-bottom: 20px;
+}
+
+/* Product Cards */
+.block2 {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    
+    padding: 1px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.block2:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.block2-pic {
+    position: relative;
+    overflow: hidden;
+}
+
+.block2-pic img {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+.block2:hover .block2-pic img {
+    transform: scale(1.05);
+}
+
+.block2-txt-child2 {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.block2-txt-child2 a {
+    margin-left: 10px;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.block2-txt-child2 a:hover {
+    color: #333;
+}
+
+.stext-106 {
+    font-size: 16px;
+    color: #333;
+}
+
+.size-104 {
+    font-size: 14px;
+    color: #666;
+}
+
+.bor4 {
+    border-radius: 4px;
+}
+
+.bor3 {
+    border-radius: 3px;
+}
+
+.trans-04 {
+    transition: all 0.4s ease;
+}
+
+.flex-r {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.p-t-3 {
+    padding-top: 5px;
+}
+.ltext-103 {
+    margin-left: 40px;
+    margin-top: 40px;
+}
+section {
+    margin-top: 100px; 
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .block2 {
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .block2 {
+        padding: 8px;
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="main-navbar shadow-sm sticky-top">
+        <div class="top-navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                        <h5 class="brand-name">UniqKid</h5>
+                    </div>
+                    <div class="col-md-5 my-auto">
+                        
+                        
+                    </div>
+                    <div class="col-md-5 my-auto">
+                        <ul class="nav justify-content-end">
+                            <% if(userData) { %> 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/cart/<%= userData._id %>">
+                                        <i class="fa fa-shopping-cart"></i> Cart
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fa fa-heart"></i> Wishlist
+                                    </a>
+                                </li>
+                           <% } else {%>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/userlogin">
+                                    <i class="fa fa-shopping-cart"></i> Cart
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/userlogin">
+                                    <i class="fa fa-heart"></i> Wishlist
+                                </a>
+                            </li>
+
+                        <% } %>
+                            
+                           
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-user"></i> 
+                                    <% if(userData) { %>
+                                        <%= userData.firstName %> 
+                                    <% } else { %>
+                                        Account
+                                    <% } %>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <% if(userData) { %>
+                                            <a class="dropdown-item" href="/userlogout"><i class="fa fa-sign-out"></i> Logout</a> <!-- Render "Logout" if userData exists -->
+                                        <% } else { %>
+                                            <a class="dropdown-item" href="/userlogin"><i class="fa fa-sign-out"></i> Login</a> <!-- Display "Login" if userData doesn't exist -->
+                                        <% } %>
+                                    </li>
+                                    <% if(userData){ %>
+                                    <li>
+                                        <a class="dropdown-item" href="/profile"><i class="fa fa-user"></i> Profile</a>
+                                    </li>
+                                <li><a class="dropdown-item" href="/myorder"><i class="fa fa-list"></i> My Orders</a></li>
+                                <li><a class="dropdown-item" href="/wishlist"><i class="fa fa-heart"></i> My Wishlist</a></li>
+                                <li><a class="dropdown-item" href="/cart/<%=userData._id %>"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+                                <% } else { %>
+                                    <li>
+                                        <a class="dropdown-item" href="/userlogin"><i class="fa fa-user"></i> Profile</a>
+                                    </li>
+                                <li><a class="dropdown-item" href="/userlogin"><i class="fa fa-list"></i> My Orders</a></li>
+                                <li><a class="dropdown-item" href="/userlogin"><i class="fa fa-heart"></i> My Wishlist</a></li>
+                                <li><a class="dropdown-item" href="/userlogin"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+
+                                <% } %>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="#">
+                    UniqKid
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shop">shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Offers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    

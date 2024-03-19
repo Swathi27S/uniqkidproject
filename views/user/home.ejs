@@ -1,0 +1,171 @@
+<%-include("../includes/user/homehead") %>
+<style>
+.banner-container {
+    width: 100%;
+    height: 400px; 
+    background-image: url("/images/homeimages/background.jpg");
+    background-size: cover;
+    background-position: center; 
+}
+.card {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 1000px;
+    }
+}
+.card-img-top {
+    height: 100%; 
+    object-fit: cover; 
+}
+footer {
+    background-color: black;
+    color: white;
+}
+
+
+
+
+    </style>
+
+    <div class="banner-container">
+       
+    </div>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/images/homeimages/girlback.jpeg" class="card-img-top" alt="Card Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Girls</h5>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/images/homeimages/boyback.jpeg" class="card-img-top" alt="Card Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Boys</h5>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/images/homeimages/infant.jpeg" class="card-img-top" alt="Card Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Infants</h5>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="bg0 p-t-23 p-b-140">
+        <div class="container">
+            <div class="p-b-10">
+                <h3 class="ltext-103 cl5 text-center">Wardrobe Picks</h3>
+                
+                <!-- Girls Section -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Girls</h4>
+                    </div>
+                    <% product.forEach(function(data) { %>
+                        <% if (data.usertype === 'Girls') { %>
+                            <div class="col-sm-6 col-md-4 p-b-35 isotope-item women">
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0">
+                                        <img src="/uploads/<%= data.images[0] %>" alt="IMG-PRODUCT" style="max-height: 300px; object-fit: fill;">
+                                    </div>
+                                    <div class="block2-txt flex-w flex-t p-t-14">
+                                        <div class="block2-txt-child1 flex-col-l">
+                                            <%= data.productName %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </div>
+                <hr>
+                
+                <!-- Boys Section -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Boys</h4>
+                    </div>
+                    <% product.forEach(function(data) { %>
+                        <% if (data.usertype === 'Boys') { %>
+                            <div class="col-sm-6 col-md-4 p-b-35 isotope-item men">
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0">
+                                        <img src="/uploads/<%= data.images[0] %>" alt="IMG-PRODUCT" style="max-height: 300px; object-fit: fill;">
+                                    </div>
+                                    <div class="block2-txt flex-w flex-t p-t-14">
+                                        <div class="block2-txt-child1 flex-col-l">
+                                            <%= data.productName %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </div>
+                <hr>
+                
+                <!-- Infants Section -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Infants</h4>
+                    </div>
+                    <% product.forEach(function(data) { %>
+                        <% if (data.usertype === 'Infants') { %>
+                            <div class="col-sm-6 col-md-4 p-b-35 isotope-item bag">
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0">
+                                        <img src="/uploads/<%= data.images[0] %>" alt="IMG-PRODUCT" style="max-height: 300px; object-fit: fill;">
+                                    </div>
+                                    <div class="block2-txt flex-w flex-t p-t-14">
+                                        <div class="block2-txt-child1 flex-col-l">
+                                            <%= data.productName %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+      
+    
+    
+   
+<%-include("../includes/user/homefooter") %>

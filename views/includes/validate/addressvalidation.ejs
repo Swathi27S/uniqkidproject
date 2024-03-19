@@ -1,0 +1,142 @@
+
+<script>
+const form = document.getElementById("form")
+const landmark = document.getElementById("landmark")
+const street = document.getElementById("street")
+const village = document.getElementById("village")
+const city = document.getElementById("city")
+const state = document.getElementById("state")
+const country = document.getElementById("country")
+const phonenumber = document.getElementById("phonenumber")
+const zipcode = document.getElementById("zipcode")
+console.log("hi")
+
+form.addEventListener("submit", e => {
+
+    
+    if(!validateInputs()){
+        form.submit()
+        console.log("no")
+    
+    }else{
+        e.preventDefault();
+       
+    }
+   
+    
+
+});
+
+const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector(".forValidation")
+    errorDisplay.innerText = message
+}
+
+const validateInputs = () => {
+    let letterOnlyRegex = /^[A-Za-z\s]*$/;
+    let phoneRegex = /^\d{10}$/;
+    let zipRegex = /^\d{6}$/;
+   
+   
+
+    const landmarkvalue = landmark.value.trim();
+    const streetvalue = street.value.trim();
+    const villagevalue = village.value.trim();
+    const cityvalue = city.value.trim();
+    const statevalue = state.value.trim();
+    const countryvalue = country.value.trim();
+    const phonenumbervalue = phonenumber.value.trim();
+    const zipcodevalue = zipcode.value.trim();
+    let hasError = false; 
+
+    if (landmarkvalue === '') {
+        setError(landmark, "Field is required");
+        hasError = true;
+    } else if (!letterOnlyRegex.test(landmarkvalue)) {
+        setError(landmark, "use only letters");
+        hasError = true;
+    } else {
+        setError(landmark, "");
+    }
+
+
+    if (streetvalue === '') {
+        setError(street, "Field is required");
+        hasError = true;
+    } else if (!letterOnlyRegex.test(streetvalue)) {
+        setError(street, "use only letters");
+        hasError = true;
+    } else {
+        setError(street, "");
+    }
+
+    if (villagevalue === '') {
+        setError(village, "Field is required");
+        hasError = true;
+    } else if (!letterOnlyRegex.test(villagevalue)) {
+        setError(village, "use only letters");
+        hasError = true;
+    } else {
+        setError(village, "");
+    }
+
+    if (cityvalue === '') {
+        setError(city, "Field is required");
+        hasError = true;
+    } else if (!letterOnlyRegex.test(cityvalue)) {
+        setError(city, "use only letters");
+        hasError = true;
+    } else {
+        setError(city, "");
+    }
+
+    if (statevalue === '') {
+        setError(state, "Field is required");
+        hasError = true;
+    } else if (!letterOnlyRegex.test(statevalue)) {
+        setError(state, "use only letters");
+        hasError = true;
+    } else {
+        setError(state, "");
+    }
+
+    if (countryvalue === '') {
+        setError(country, "Field is required");
+        hasError = true;
+    } else if (!letterOnlyRegex.test(countryvalue)) {
+        setError(country, "use only letters");
+        hasError = true;
+    } else {
+        setError(country, "");
+    }
+
+    if (phonenumbervalue === "") {
+        setError(phonenumber, "Field is required");
+        hasError = true;
+    } else if (!phoneRegex.test(phonenumbervalue)) {
+        setError(phonenumber, "Invalid phone number format");
+        hasError = true;
+    } else {
+        setError(phonenumber, "");
+    }
+
+    
+    if (zipcodevalue === "") {
+        setError(zipcode, "Field is required");
+        hasError = true;
+    } else if (!zipRegex.test(zipcodevalue)) {
+        setError(zipcode, "Invalid ZIP code format");
+        hasError = true;
+    } else {
+        setError(zipcode, "");
+    }
+
+
+    
+
+    
+
+    return hasError; 
+}
+</script>

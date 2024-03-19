@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .card {
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #ae1313;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left side -->
+        <div class="card">
+            <h2>Billing Details</h2>
+            <form id="billingForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <!-- Add more billing details fields as needed -->
+                
+                <h2>Shipping Address</h2>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <!-- Add more address fields as needed -->
+            </form>
+        </div>
+
+        <!-- Right side -->
+        <div class="card">
+            <h2>Shipping Charge</h2>
+            <p>$5.00</p>
+
+            <h2>Payment Options</h2>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cashOnDelivery" required>
+                    <label for="cashOnDelivery">Cash on Delivery</label>
+                </div>
+                <div class="form-group">
+                    <input type="radio" id="razorpay" name="paymentMethod" value="razorpay">
+                    <label for="razorpay">Razorpay</label>
+                </div>
+            </form>
+
+
+             <button type="submit" form="billingForm">Place Order</button>
+
+            <button type="submit" form="bill
+

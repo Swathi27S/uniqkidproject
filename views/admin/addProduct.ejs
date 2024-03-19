@@ -1,0 +1,118 @@
+<%- include('../includes/admin/adminHead')%>
+<div id="main-wrapper">
+    <%- include('../includes/admin/adminNav')%>
+    <%- include('../includes/admin/adminSidebar')%>
+     <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <form class="form-horizontal" action="/addproduct" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <h2>Add Product</h2>
+                      <label class="control-label col-sm-2" for="product">Product Name:</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="productName" name="productName" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="category">Category Name:</label>
+                      <div class="col-sm-10"> 
+                        <select class="form-control" id="categoryName" name="categoryName" required>
+                            <option value=" "disabled selected>select category</option>
+                            <% category.forEach(category =>{ %>
+                                <option value="<%= category._id %>"><%=category.category %></option>
+
+                            <%});%>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="size">Size:</label>
+                      <div class="col-sm-10">
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline"><input type="checkbox" name="size" value="10months"> 10 months</label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline"><input type="checkbox" name="size" value="1-3yrs"> 1-3 years</label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline"><input type="checkbox" name="size" value="4-6yrs"> 4-6 years</label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline"><input type="checkbox" name="size" value="7-9yrs"> 7-9 years</label>
+                          </div>
+                          <div class="checkbox-inline">
+                              <label class="checkbox-inline"><input type="checkbox" name="size" value="10-12yrs"> 10-12 years</label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="usertype">User Type:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="usertype" name="usertype" required> 
+                    </div>
+                </div>
+
+                  
+                    
+                    
+                    
+                  
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="stock">Stock:</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="stock" name="stock" required>
+                        </div>
+                    </div>
+                    <% if (stockError || priceError) { %>
+                      <div class="text-danger">
+                          <% if (stockError && priceError) { %>
+                              <%= stockError %><br>
+                              <%= priceError %>
+                          <% } else if (stockError) { %>
+                              <%= stockError %>
+                          <% } else { %>
+                              <%= priceError %>
+                          <% } %>
+                      </div>
+                  <% } %>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="product">Price:</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="price" name="price" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="images">Images:</label>
+                        <div class="col-sm-10">
+                          
+                          <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple > 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="description">Description:</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="description" name="description" required> 
+                        </div>
+                    </div>
+
+                     
+                    
+                    <div class="form-group"> 
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                      </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+</div>
+<%- include('../includes/admin/adminEnd')%>
+
+                
